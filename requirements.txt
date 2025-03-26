@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+sqlalchemy
+databases
+psycopg2-binary
+python-multipart
+joblib
+scikit-learn
+#pickle
+numpy
+
+
+# vs code indirilmesi
+# new
+# pip install -r requirements.txt
+
+# postgreSQL indirin

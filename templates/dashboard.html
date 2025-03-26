@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .chart-container {
+            width: 20%;
+            /* Grafiklerin genişliği */
+        }
+
+        #statistics {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- İstatistikleri göstermek için bir konteyner -->
+    <div id="statistics"></div>
+
+    <div class="container">
+        <h1>Dashboard</h1>
+        <div class="row">
+            <!-- Üstteki 3 grafik -->
+            <div class="chart-container">
+                <h3>Hasta Sayısı / Toplam Kişi Sayısı</h3>
+                <canvas id="hastaToplamChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Erkek Sayısı / Toplam Kişi Sayısı</h3>
+                <canvas id="erkekToplamChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Kadın Sayısı / Toplam Kişi Sayısı</h3>
+                <canvas id="kadinToplamChart"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Altta 2 grafik -->
+            <div class="chart-container">
+                <h3>Hasta Erkek Sayısı / Erkek Sayısı</h3>
+                <canvas id="hastaErkekToplamChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Hasta Kadın Sayısı / Kadın Sayısı</h3>
+                <canvas id="hastaKadinToplamChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <button onclick="window.location.href='/'">Ana Sayfaya Dön</button>
+    </div>
+    <script>
+        // Sayfa yüklendiğinde istatistikleri çek
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchStatistics();
+        });
+
+        function fetchStatistics() {
+            fetch('/api/statistics')
+                .then(response => response.json())
+                .then(data => {
+                    updateCharts(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function updateCharts(data) {
+            var statisticsElement = document.getElementById('statistics');
+            statisticsElement.innerHTML = `
+        <strong>İstatistikler:</strong><br>
+        Toplam Kişi Sayısı: ${data.toplam_kisi}<br>
+        Hasta Toplam: ${data.hasta_toplam}<br>
+        Erkek Sayısı: ${data.erkek_sayisi}<br>
+        Kadın Sayısı: ${data.kadın_sayisi}<br> <!-- Anahtar ismini API ile eşleştirin -->
+        Hasta Erkek Sayısı: ${data.hasta_erkek}<br>
+        Hasta Kadın Sayısı: ${data.hasta_kadin} <!-- Anahtar ismini API ile eşleştirin -->
+    `;
+
+            // Grafikleri güncelleme kodları...
+            // Hasta Sayısı / Toplam Kişi Sayısı Grafiği
+            var hastaToplamChart = new Chart(document.getElementById('hastaToplamChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Hasta Kişi Sayısı', 'Sağlıklı Kişi Sayısı'],
+                    datasets: [{
+                        data: [data.hasta_toplam, data.toplam_kisi - data.hasta_toplam],
+                        backgroundColor: ['#FF6384', '#36A2EB']
+                    }]
+                }
+            });
+
+            // Erkek Sayısı / Toplam Kişi Sayısı Grafiği
+            var erkekToplamChart = new Chart(document.getElementById('erkekToplamChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Erkek Sayısı', 'Diğer Kişi Sayısı'],
+                    datasets: [{
+                        data: [data.erkek_sayisi, data.toplam_kisi - data.erkek_sayisi],
+                        backgroundColor: ['#FFCE56', '#4BC0C0']
+                    }]
+                }
+            });
+
+            // Kadın Sayısı / Toplam Kişi Sayısı Grafiği
+            var kadinToplamChart = new Chart(document.getElementById('kadinToplamChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Kadın Sayısı', 'Diğer Kişi Sayısı'],
+                    datasets: [{
+                        data: [data.kadın_sayisi, data.toplam_kisi - data.kadın_sayisi],
+                        backgroundColor: ['#FF9F40', '#9966FF']
+                    }]
+                }
+            });
+
+            // Hasta Erkek Sayısı / Erkek Sayısı Grafiği
+            var hastaErkekToplamChart = new Chart(document.getElementById('hastaErkekToplamChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Hasta Erkek Sayısı', 'Sağlıklı Erkek Sayısı'],
+                    datasets: [{
+                        data: [data.hasta_erkek, data.erkek_sayisi - data.hasta_erkek],
+                        backgroundColor: ['#36A2EB', '#FF6384']
+                    }]
+                }
+            });
+
+            // Hasta Kadın Sayısı / Kadın Sayısı Grafiği
+            var hastaKadinToplamChart = new Chart(document.getElementById('hastaKadinToplamChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Hasta Kadın Sayısı', 'Sağlıklı Kadın Sayısı'],
+                    datasets: [{
+                        data: [data.hasta_kadin, data.kadın_sayisi - data.hasta_kadin],
+                        backgroundColor: ['#9966FF', '#FF9F40']
+                    }]
+                }
+            });
+        }
+
+
+        // Grafiklerin başlangıç konfigürasyonları
+        // ... Grafik oluşturma kodları ...
+    </script>
+</body>
+
+</html>

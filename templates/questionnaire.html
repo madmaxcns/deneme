@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Soruları</title>
+    <style>
+        /* Eski sayfanın CSS stilleri burada */
+        body {
+            background-color: #073050;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #073050;
+            color: white;
+        }
+
+        .option-label {
+            margin-right: 10px;
+        }
+
+        button {
+            font-size: 1.2em;
+            padding: 10px;
+            background-color: #073050;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button:hover {
+            background-color: #073050;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Test Soruları</h2>
+
+        <form id="testForm">
+            <table>
+                <tr>
+                    <th>Soru</th>
+                    <th style="width: 350px;">Seçenekler</th> <!-- Sabit genişlik -->
+                </tr>
+
+                <tr>
+                    <td>Soru 1: Stresli olayın tekrarlayan, rahatsız eden ve istenmeyen anıları sizi ne kadar bunalttı?
+                    </td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question1" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question1" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question1" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question1" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question1" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 2: Stresli olaya ilişkin tekrarlayan, rahatsız eden rüyalar sizi ne kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question2" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question2" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question2" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question2" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question2" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 3: Aniden stresli olayı sanki gerçekten bir daha yaşıyormuş gibi hissetmek veya davranmak
+                        (sanki gerçekten olayın yaşandığı ana geri dönmüş yeniden yaşıyormuş gibi) sizi ne kadar
+                        bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question3" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question3" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question3" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question3" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question3" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 4: Bir şeyler size stresli olayı anımsattığı zaman yaşadığınız üzüntü hissi sizi ne kadar
+                        bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question4" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question4" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question4" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question4" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question4" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 5: Bir şeyler size stresli olayı anımsattığı zaman güçlü fiziksel tepkiler vermek (örneğin,
+                        kalp çarpıntısı, nefes almada güçlük, terleme gibi) sizi ne kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question5" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question5" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question5" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question5" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question5" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 6: Stresli olayla ilişkili anılardan, düşüncelerden ve duygulardan kaçınmaya çalışmak sizi
+                        ne kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question6" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question6" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question6" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question6" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question6" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 7: Stresli olayı anımsatan etraftaki hatırlatıcı şeylerden (örneğin, insanlardan,
+                        yerlerden, konuşmalardan, etkinliklerden, nesnelerden veya durumlardan) kaçınmaya çalışmak sizi
+                        ne kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question7" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question7" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question7" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question7" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question7" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 8: Stresli olaya ilişkin önemli kısımları hatırlamada yaşanan güçlükler sizi ne kadar
+                        bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question8" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question8" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question8" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question8" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question8" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 9: Kendiniz, diğer insanlar veya dünya hakkında güçlü olumsuz düşüncelere sahip olmak
+                        (örneğin, kötü biriyim, bende ciddi şekilde yanlış olan bir şeyler var, kimseye güvenilmez,
+                        dünya tümüyle tehlikeli bir yerdir gibi düşünceler) sizi ne kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question9" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question9" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question9" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question9" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question9" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 10: Stresli olay veya bu olayın sonrasında ortaya çıkan durumlar için kendinizi veya bir
+                        başkasını suçlamak sizi ne kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question10" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question10" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question10" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question10" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question10" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 11: Korku, dehşete kapılma, öfke, suçluluk veya utanç gibi güçlü olumsuz duygular sizi ne
+                        kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question11" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question11" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question11" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question11" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question11" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 12: Daha önce yapmaktan keyif aldığınız etkinliklere olan ilginizi kaybetmek sizi ne kadar
+                        bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question12" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question12" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question12" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question12" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question12" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 13: Başka insanlardan uzak veya kopmuş hissetmek sizi ne kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question13" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question13" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question13" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question13" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question13" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 14: Olumlu duyguları yaşayamamak (örneğin, mutluluğu hissedememek veya size yakın insanlara
+                        sevgi dolu hisler duyamamak) sizi ne kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question14" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question14" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question14" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question14" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question14" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 15: Asabi davranışlar, öfke patlamaları veya öfkeli hareketler sizi ne kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question15" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question15" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question15" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question15" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question15" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 16: Çok fazla risk almak veya size zarar verebilecek şeyler yapmak sizi ne kadar bunalttı?
+                    </td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question16" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question16" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question16" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question16" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question16" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 17: Aşırı tetikte olmak veya temkinli davranmak veya hazırda beklemek sizi ne kadar
+                        bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question17" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question17" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question17" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question17" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question17" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 18: Yerinden sıçramak veya kolayca irkilmek sizi ne kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question18" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question18" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question18" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question18" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question18" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 19: Dikkati toplamada güçlükler sizi ne kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question19" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question19" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question19" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question19" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question19" value="4"> 4</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Soru 20: Uykuya dalma veya uykuyu devam ettirme güçlükleri sizi ne kadar bunalttı?</td>
+                    <td>
+                        <label class="option-label"><input type="radio" name="question20" value="0"> 0</label>
+                        <label class="option-label"><input type="radio" name="question20" value="1"> 1</label>
+                        <label class="option-label"><input type="radio" name="question20" value="2"> 2</label>
+                        <label class="option-label"><input type="radio" name="question20" value="3"> 3</label>
+                        <label class="option-label"><input type="radio" name="question20" value="4"> 4</label>
+                    </td>
+                </tr>
+
+            </table>
+
+            <input type="submit" value="Testi Bitir">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('testForm').onsubmit = function (event) {
+            event.preventDefault();
+
+            // Tüm soruların cevaplanıp cevaplanmadığını kontrol eden fonksiyon
+            function areAllQuestionsAnswered() {
+                for (var i = 1; i <= 20; i++) {
+                    if (!document.querySelector(`input[name="question${i}"]:checked`)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            // Eğer tüm sorular cevaplanmamışsa uyarı göster
+            if (!areAllQuestionsAnswered()) {
+                alert("Please Answer All of The Questions.");
+                return;
+            }
+
+            // localStorage'dan hasta numarasını alın veya 'Bilinmeyen Hasta' varsayılan değerini kullanın
+            var hastaNo = localStorage.getItem('hastaNo') || 'Unassigned Patient';
+            var sorular = {};
+            for (var i = 1; i <= 20; i++) {
+                var soruCevabi = document.querySelector(`input[name="question${i}"]:checked`);
+                sorular[`soru_${i}`] = parseInt(soruCevabi.value);
+            }
+
+            // Hasta numarasını ve test sorularının cevaplarını sunucuya gönderin
+            fetch('/hasta_sorular/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    hasta_no: hastaNo,
+                    ...sorular
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                    // Sunucudan başarılı bir yanıt alındıktan sonra sonuçlar sayfasına yönlendir
+                    window.location.href = '/results';
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        };
+    </script>
+
+</body>
+
+</html>

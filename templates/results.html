@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonuçlar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        #userParagraph {
+            margin: 15px 0;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        #resultText {
+            font-weight: bold;
+            color: #adebeb;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Metin Analiz Sonuçları</h2>
+        <p><strong>Girilen Metin</strong></p>
+        <p id="userParagraph"></p>
+        <p id="textResult"></p>
+    </div>
+
+    <div class="container">
+        <h2>Test Analiz Sonuçları</h2>
+        <p id="userTestAnswers"></p>
+        <p id="testResult"></p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var hastaNo = localStorage.getItem('hastaNo') || 'Bilinmeyen Hasta';
+
+            function saveResults(paragrafSonuc, testSonuc) {
+                fetch('/save_predictions/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        hasta_no: hastaNo,
+                        paragraf_sonuc: paragrafSonuc,
+                        test_sonuc: testSonuc
+                    })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Veritabanı kaydı başarısız');
+                        }
+                        console.log('Veritabanına başarıyla kaydedildi');
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+
+            fetch('/get-results')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('userParagraph').textContent = data.user_paragraph;
+                    var textResult = (data.prediction === "1") ? 'Travma Sonrası Stres Bozukluğu Gözlemlendi' : 'Travma Sonrası Stres Bozukluğu Gözlemlenmedi';
+                    textResult += ` (${(data.proba * 100).toFixed(2)}% olasılık)`;
+                    document.getElementById('textResult').textContent = textResult;
+
+                    return { paragrafSonuc: data.prediction, paragrafProba: data.proba };
+                })
+                .then(paragrafData => {
+                    fetch('/api/get-test-results')
+                        .then(testResponse => testResponse.json())
+                        .then(testData => {
+                            var testResultText = testData.testPrediction === "1" ? 'Travma Sonrası Stres Bozukluğu Gözlemlendi' : 'Travma Sonrası Stres Bozukluğu Gözlemlenmedi';
+                            testResultText += ` (${(testData.proba * 100).toFixed(2)}% olasılık)`;
+                            document.getElementById('testResult').textContent = testResultText;
+
+                            // Sonuçları veritabanına kaydet
+                            saveResults(paragrafData.paragrafSonuc, testData.testPrediction);
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+    <button id="viewStatistics" onclick="window.location.href='/dashboard'">İstatistikleri Gör</button>
+
+</body>
+
+</html>
